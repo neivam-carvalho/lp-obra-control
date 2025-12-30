@@ -20,9 +20,20 @@ const Index = () => {
       {/* Footer */}
       <footer className="py-8 bg-background border-t border-border">
         <div className="container">
-          <p className="text-center text-sm text-muted-foreground">
-            © 2024 — Projeto em fase de validação
-          </p>
+          <div className="flex flex-col items-center gap-2 text-center text-sm text-muted-foreground">
+            <p>
+              Desenvolvido por{" "}
+              <a 
+                href="https://upvya.com" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-primary hover:underline font-medium"
+              >
+                Upvya
+              </a>
+            </p>
+            <p>© 2025 Todos os direitos reservados</p>
+          </div>
         </div>
       </footer>
     </main>
