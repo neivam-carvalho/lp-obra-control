@@ -35,7 +35,7 @@ const PainSection = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <span className="inline-block px-4 py-1.5 rounded-full bg-destructive/10 text-destructive text-sm font-medium mb-4">
+          <span className="inline-block px-5 py-2 rounded-full bg-destructive/10 text-destructive text-base md:text-lg font-semibold mb-4">
             Você se identifica?
           </span>
           <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4">

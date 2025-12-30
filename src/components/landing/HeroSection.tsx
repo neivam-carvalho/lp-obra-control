@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Shield, TrendingDown, AlertTriangle } from "lucide-react";
+import { ArrowRight, ShieldCheck, Percent } from "lucide-react";
 
 const HeroSection = () => {
   const scrollToValidation = () => {
@@ -17,17 +17,6 @@ const HeroSection = () => {
 
       <div className="container relative z-10 py-20 lg:py-32">
         <div className="max-w-4xl mx-auto text-center">
-          {/* Badge */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-destructive/10 text-destructive text-sm font-medium mb-8"
-          >
-            <AlertTriangle className="w-4 h-4" />
-            <span>Projeto em validação</span>
-          </motion.div>
-
           {/* Headline */}
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
@@ -72,15 +61,19 @@ const HeroSection = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
-            className="flex flex-wrap items-center justify-center gap-6 mt-12 text-sm text-muted-foreground"
+            className="flex flex-wrap items-center justify-center gap-8 mt-12"
           >
-            <div className="flex items-center gap-2">
-              <Shield className="w-4 h-4 text-success" />
-              <span>Prevenção de prejuízo</span>
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-full bg-success/20 flex items-center justify-center">
+                <ShieldCheck className="w-5 h-5 text-success" />
+              </div>
+              <span className="text-lg font-medium text-foreground">Prevenção de prejuízo</span>
             </div>
-            <div className="flex items-center gap-2">
-              <TrendingDown className="w-4 h-4 text-success" />
-              <span>Menos juros</span>
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-full bg-success/20 flex items-center justify-center">
+                <Percent className="w-5 h-5 text-success" />
+              </div>
+              <span className="text-lg font-medium text-foreground">Menos juros</span>
             </div>
           </motion.div>
         </div>
