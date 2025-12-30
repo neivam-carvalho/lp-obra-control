@@ -1,7 +1,9 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { Check, ArrowRight, Sparkles } from "lucide-react";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Check, ArrowRight, Sparkles, User, Phone, Mail } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
 const workValues = [
@@ -19,16 +21,33 @@ const priceOptions = [
   { value: 149, label: "R$149/mês", popular: false }
 ];
 
+interface ContactData {
+  name: string;
+  phone: string;
+  email: string;
+}
+
 const ValidationSection = () => {
   const [step, setStep] = useState(1);
   const [selectedWorkValue, setSelectedWorkValue] = useState<string | null>(null);
   const [selectedPrice, setSelectedPrice] = useState<number | null>(null);
+  const [contactData, setContactData] = useState<ContactData>({ name: "", phone: "", email: "" });
   const [submitted, setSubmitted] = useState(false);
   const { toast } = useToast();
 
+  const isContactValid = contactData.name.trim() && contactData.phone.trim() && contactData.email.trim();
+
   const handleSubmit = () => {
+    if (!isContactValid) {
+      toast({
+        title: "Preencha todos os campos",
+        description: "Por favor, informe seu nome, telefone e e-mail.",
+        variant: "destructive"
+      });
+      return;
+    }
     // In a real scenario, this would send data to analytics/backend
-    console.log("Validation data:", { selectedWorkValue, selectedPrice });
+    console.log("Validation data:", { selectedWorkValue, selectedPrice, contactData });
     setSubmitted(true);
     toast({
       title: "Obrigado pelo interesse!",
@@ -38,26 +57,29 @@ const ValidationSection = () => {
 
   if (submitted) {
     return (
-      <section id="validation" className="py-20 lg:py-28 bg-gradient-hero text-primary-foreground">
-        <div className="container">
+      <section id="validation" className="py-16 lg:py-28 bg-gradient-hero text-primary-foreground">
+        <div className="container px-4">
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5 }}
             className="max-w-2xl mx-auto text-center"
           >
-            <div className="w-20 h-20 mx-auto mb-8 rounded-full bg-secondary/20 flex items-center justify-center">
-              <Check className="w-10 h-10 text-secondary" />
+            <div className="w-16 h-16 md:w-20 md:h-20 mx-auto mb-6 md:mb-8 rounded-full bg-secondary/20 flex items-center justify-center">
+              <Check className="w-8 h-8 md:w-10 md:h-10 text-secondary" />
             </div>
-            <h2 className="font-display text-3xl md:text-4xl font-bold mb-4">
+            <h2 className="font-display text-2xl md:text-3xl lg:text-4xl font-bold mb-4">
               Obrigado pela sua resposta!
             </h2>
-            <p className="text-lg opacity-90 mb-8">
+            <p className="text-base md:text-lg opacity-90 mb-6 md:mb-8">
               Seu interesse nos ajuda a construir algo que realmente resolve o seu problema.
               Entraremos em contato assim que o produto estiver disponível.
             </p>
-            <div className="p-4 rounded-xl bg-primary-foreground/10 inline-block">
+            <div className="p-4 rounded-xl bg-primary-foreground/10 inline-block text-left">
               <p className="text-sm opacity-75">
+                Nome: <span className="font-semibold">{contactData.name}</span>
+              </p>
+              <p className="text-sm opacity-75 mt-1">
                 Valor da obra: <span className="font-semibold">{selectedWorkValue}</span>
               </p>
               <p className="text-sm opacity-75 mt-1">
@@ -71,33 +93,35 @@ const ValidationSection = () => {
   }
 
   return (
-    <section id="validation" className="py-20 lg:py-28 bg-gradient-hero text-primary-foreground">
-      <div className="container">
+    <section id="validation" className="py-16 lg:py-28 bg-gradient-hero text-primary-foreground">
+      <div className="container px-4">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-12"
+          className="text-center mb-8 md:mb-12"
         >
           <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-secondary/20 text-secondary text-sm font-medium mb-4">
             <Sparkles className="w-4 h-4" />
             Validação
           </span>
-          <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
+          <h2 className="font-display text-2xl md:text-3xl lg:text-5xl font-bold mb-4">
             Ajude-nos a construir isso
           </h2>
-          <p className="text-lg opacity-90 max-w-2xl mx-auto">
-            Responda duas perguntas rápidas para entendermos melhor sua situação.
+          <p className="text-base md:text-lg opacity-90 max-w-2xl mx-auto">
+            Responda algumas perguntas rápidas para entendermos melhor sua situação.
           </p>
         </motion.div>
 
         <div className="max-w-2xl mx-auto">
           {/* Progress indicator */}
-          <div className="flex items-center justify-center gap-3 mb-10">
-            <div className={`w-3 h-3 rounded-full transition-colors ${step >= 1 ? 'bg-secondary' : 'bg-primary-foreground/30'}`} />
-            <div className={`w-8 h-0.5 transition-colors ${step >= 2 ? 'bg-secondary' : 'bg-primary-foreground/30'}`} />
-            <div className={`w-3 h-3 rounded-full transition-colors ${step >= 2 ? 'bg-secondary' : 'bg-primary-foreground/30'}`} />
+          <div className="flex items-center justify-center gap-2 md:gap-3 mb-8 md:mb-10">
+            <div className={`w-2.5 h-2.5 md:w-3 md:h-3 rounded-full transition-colors ${step >= 1 ? 'bg-secondary' : 'bg-primary-foreground/30'}`} />
+            <div className={`w-6 md:w-8 h-0.5 transition-colors ${step >= 2 ? 'bg-secondary' : 'bg-primary-foreground/30'}`} />
+            <div className={`w-2.5 h-2.5 md:w-3 md:h-3 rounded-full transition-colors ${step >= 2 ? 'bg-secondary' : 'bg-primary-foreground/30'}`} />
+            <div className={`w-6 md:w-8 h-0.5 transition-colors ${step >= 3 ? 'bg-secondary' : 'bg-primary-foreground/30'}`} />
+            <div className={`w-2.5 h-2.5 md:w-3 md:h-3 rounded-full transition-colors ${step >= 3 ? 'bg-secondary' : 'bg-primary-foreground/30'}`} />
           </div>
 
           <AnimatePresence mode="wait">
@@ -108,12 +132,12 @@ const ValidationSection = () => {
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: -20 }}
                 transition={{ duration: 0.3 }}
-                className="bg-primary-foreground/10 backdrop-blur-sm rounded-2xl p-8"
+                className="bg-primary-foreground/10 backdrop-blur-sm rounded-2xl p-5 md:p-8"
               >
-                <h3 className="font-display text-xl font-bold mb-6 text-center">
+                <h3 className="font-display text-lg md:text-xl font-bold mb-4 md:mb-6 text-center">
                   Qual o valor estimado da sua obra?
                 </h3>
-                <div className="grid gap-3">
+                <div className="grid gap-2 md:gap-3">
                   {workValues.map((value) => (
                     <button
                       key={value}
@@ -121,7 +145,7 @@ const ValidationSection = () => {
                         setSelectedWorkValue(value);
                         setTimeout(() => setStep(2), 200);
                       }}
-                      className={`w-full p-4 rounded-xl text-left font-medium transition-all ${
+                      className={`w-full p-3 md:p-4 rounded-xl text-left text-sm md:text-base font-medium transition-all ${
                         selectedWorkValue === value
                           ? 'bg-secondary text-secondary-foreground'
                           : 'bg-primary-foreground/10 hover:bg-primary-foreground/20'
@@ -141,47 +165,132 @@ const ValidationSection = () => {
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: -20 }}
                 transition={{ duration: 0.3 }}
-                className="bg-primary-foreground/10 backdrop-blur-sm rounded-2xl p-8"
+                className="bg-primary-foreground/10 backdrop-blur-sm rounded-2xl p-5 md:p-8"
               >
-                <h3 className="font-display text-xl font-bold mb-2 text-center">
+                <h3 className="font-display text-lg md:text-xl font-bold mb-2 text-center">
                   Quanto você pagaria para evitar prejuízo financeiro na obra?
                 </h3>
-                <p className="text-sm opacity-75 text-center mb-6">
+                <p className="text-xs md:text-sm opacity-75 text-center mb-4 md:mb-6">
                   Considerando um sistema que antecipa problemas de orçamento.
                 </p>
-                <div className="grid grid-cols-2 gap-4 mb-6">
+                <div className="grid grid-cols-2 gap-2 md:gap-4 mb-4 md:mb-6">
                   {priceOptions.map((option) => (
                     <button
                       key={option.value}
                       onClick={() => setSelectedPrice(option.value)}
-                      className={`relative p-5 rounded-xl font-medium transition-all ${
+                      className={`relative p-3 md:p-5 rounded-xl font-medium transition-all ${
                         selectedPrice === option.value
                           ? 'bg-secondary text-secondary-foreground ring-2 ring-secondary ring-offset-2 ring-offset-primary'
                           : 'bg-primary-foreground/10 hover:bg-primary-foreground/20'
                       }`}
                     >
                       {option.popular && (
-                        <span className="absolute -top-2 left-1/2 -translate-x-1/2 px-2 py-0.5 bg-secondary text-secondary-foreground text-xs font-bold rounded-full">
+                        <span className="absolute -top-2 left-1/2 -translate-x-1/2 px-2 py-0.5 bg-secondary text-secondary-foreground text-[10px] md:text-xs font-bold rounded-full whitespace-nowrap">
                           Popular
                         </span>
                       )}
-                      <span className="text-lg">{option.label}</span>
+                      <span className="text-sm md:text-lg">{option.label}</span>
                     </button>
                   ))}
                 </div>
-                <div className="flex gap-3">
+                <div className="flex flex-col sm:flex-row gap-3">
                   <Button
                     variant="ghost"
                     onClick={() => setStep(1)}
-                    className="text-primary-foreground hover:bg-primary-foreground/10"
+                    className="text-primary-foreground hover:bg-primary-foreground/10 order-2 sm:order-1"
                   >
                     Voltar
                   </Button>
                   <Button
                     variant="hero"
                     size="lg"
-                    className="flex-1"
+                    className="flex-1 order-1 sm:order-2"
                     disabled={!selectedPrice}
+                    onClick={() => setStep(3)}
+                  >
+                    Continuar
+                    <ArrowRight className="w-5 h-5" />
+                  </Button>
+                </div>
+              </motion.div>
+            )}
+
+            {step === 3 && (
+              <motion.div
+                key="step3"
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -20 }}
+                transition={{ duration: 0.3 }}
+                className="bg-primary-foreground/10 backdrop-blur-sm rounded-2xl p-5 md:p-8"
+              >
+                <h3 className="font-display text-lg md:text-xl font-bold mb-2 text-center">
+                  Suas informações de contato
+                </h3>
+                <p className="text-xs md:text-sm opacity-75 text-center mb-4 md:mb-6">
+                  Prometemos não enviar spam. Só entraremos em contato sobre o produto.
+                </p>
+                
+                <div className="space-y-4">
+                  <div className="space-y-2">
+                    <Label htmlFor="name" className="text-primary-foreground flex items-center gap-2">
+                      <User className="w-4 h-4" />
+                      Nome completo
+                    </Label>
+                    <Input
+                      id="name"
+                      type="text"
+                      placeholder="Seu nome"
+                      value={contactData.name}
+                      onChange={(e) => setContactData({ ...contactData, name: e.target.value })}
+                      className="bg-primary-foreground/10 border-primary-foreground/20 text-primary-foreground placeholder:text-primary-foreground/50 focus:border-secondary"
+                    />
+                  </div>
+                  
+                  <div className="space-y-2">
+                    <Label htmlFor="phone" className="text-primary-foreground flex items-center gap-2">
+                      <Phone className="w-4 h-4" />
+                      Telefone/WhatsApp
+                    </Label>
+                    <Input
+                      id="phone"
+                      type="tel"
+                      placeholder="(00) 00000-0000"
+                      value={contactData.phone}
+                      onChange={(e) => setContactData({ ...contactData, phone: e.target.value })}
+                      className="bg-primary-foreground/10 border-primary-foreground/20 text-primary-foreground placeholder:text-primary-foreground/50 focus:border-secondary"
+                    />
+                  </div>
+                  
+                  <div className="space-y-2">
+                    <Label htmlFor="email" className="text-primary-foreground flex items-center gap-2">
+                      <Mail className="w-4 h-4" />
+                      E-mail
+                    </Label>
+                    <Input
+                      id="email"
+                      type="email"
+                      placeholder="seu@email.com"
+                      value={contactData.email}
+                      onChange={(e) => setContactData({ ...contactData, email: e.target.value })}
+                      className="bg-primary-foreground/10 border-primary-foreground/20 text-primary-foreground placeholder:text-primary-foreground/50 focus:border-secondary"
+                    />
+                  </div>
+                </div>
+
+                <div className="flex flex-col sm:flex-row gap-3 mt-6">
+                  <Button
+                    variant="ghost"
+                    onClick={() => setStep(2)}
+                    className="text-primary-foreground hover:bg-primary-foreground/10 order-2 sm:order-1"
+                  >
+                    Voltar
+                  </Button>
+                  <Button
+                    variant="hero"
+                    size="lg"
+                    className="flex-1 order-1 sm:order-2"
+                    disabled={!isContactValid}
                     onClick={handleSubmit}
                   >
                     Confirmar interesse
