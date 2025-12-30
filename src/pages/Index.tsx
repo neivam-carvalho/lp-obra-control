@@ -1,13 +1,31 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import HeroSection from "@/components/landing/HeroSection";
+import PainSection from "@/components/landing/PainSection";
+import CauseSection from "@/components/landing/CauseSection";
+import TransformationSection from "@/components/landing/TransformationSection";
+import AudienceSection from "@/components/landing/AudienceSection";
+import ValidationSection from "@/components/landing/ValidationSection";
+import StatusSection from "@/components/landing/StatusSection";
 
 const Index = () => {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background">
-      <div className="text-center">
-        <h1 className="mb-4 text-4xl font-bold">Welcome to Your Blank App</h1>
-        <p className="text-xl text-muted-foreground">Start building your amazing project here!</p>
-      </div>
-    </div>
+    <main className="min-h-screen">
+      <HeroSection />
+      <PainSection />
+      <CauseSection />
+      <TransformationSection />
+      <AudienceSection />
+      <ValidationSection />
+      <StatusSection />
+      
+      {/* Footer */}
+      <footer className="py-8 bg-background border-t border-border">
+        <div className="container">
+          <p className="text-center text-sm text-muted-foreground">
+            © 2024 — Projeto em fase de validação
+          </p>
+        </div>
+      </footer>
+    </main>
   );
 };
 
