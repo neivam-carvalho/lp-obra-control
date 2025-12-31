@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
+import { Instagram } from "lucide-react";
 
 const Header = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -30,9 +31,19 @@ const Header = () => {
           className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border shadow-soft"
         >
           <div className="container py-3 flex items-center justify-between">
-            <span className="font-display font-bold text-lg text-foreground">
-              Obra Control
-            </span>
+            <div className="flex items-center gap-4">
+              <span className="font-display font-bold text-lg text-foreground">
+                Obra Control
+              </span>
+              <a
+                href="https://www.instagram.com/obra.control"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-muted-foreground hover:text-primary transition-colors"
+              >
+                <Instagram className="w-5 h-5" />
+              </a>
+            </div>
             <Button 
               variant="hero" 
               size="sm" 
