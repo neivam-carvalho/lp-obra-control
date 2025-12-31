@@ -31,17 +31,17 @@ const Header = () => {
           className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border shadow-soft"
         >
           <div className="container py-3 flex items-center justify-between">
-            <div className="flex items-center gap-4">
-              <span className="font-display font-bold text-lg text-foreground">
-                Obra Control
+            <div className="flex items-center gap-2">
+              <span className="font-display font-medium text-base text-foreground">
+                Siga-nos
               </span>
               <a
                 href="https://www.instagram.com/obra.control"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-muted-foreground hover:text-primary transition-colors"
+                className="flex items-center justify-center w-8 h-8 rounded-lg bg-gradient-to-tr from-yellow-400 via-pink-500 to-purple-600 hover:opacity-80 transition-opacity"
               >
-                <Instagram className="w-5 h-5" />
+                <Instagram className="w-5 h-5 text-white" />
               </a>
             </div>
             <Button 

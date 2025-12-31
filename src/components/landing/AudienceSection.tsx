@@ -13,6 +13,10 @@ const forYou = [
   {
     icon: User,
     text: "Quem quer evitar prejuízo financeiro"
+  },
+  {
+    icon: Briefcase,
+    text: "Engenheiros ou Arquitetos que apoiam seus clientes"
   }
 ];
 
@@ -68,7 +72,7 @@ const AudienceSection = () => {
                   <Check className="w-6 h-6 text-success" />
                 </div>
                 <h3 className="font-display text-xl font-bold text-foreground">
-                  É para você se...
+                  É para...
                 </h3>
               </div>
               <ul className="space-y-4">
@@ -101,7 +105,7 @@ const AudienceSection = () => {
                   <X className="w-6 h-6 text-muted-foreground" />
                 </div>
                 <h3 className="font-display text-xl font-bold text-foreground">
-                  Não é para você se...
+                  Não é para...
                 </h3>
               </div>
               <ul className="space-y-4">
