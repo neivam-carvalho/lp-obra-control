@@ -8,7 +8,7 @@ const forYou = [
   },
   {
     icon: User,
-    text: "Pessoas sem experiência em gestão de obra"
+    text: "Pessoas sem experiência em gestão financeira de obra"
   },
   {
     icon: User,
