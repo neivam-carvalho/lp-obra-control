@@ -89,7 +89,7 @@ const ValidationSection = () => {
 
   if (submitted) {
     return (
-      <section id="validation" className="py-16 lg:py-28 bg-gradient-hero text-primary-foreground">
+      <section id="validation" className="py-16 lg:py-28 bg-green-100 text-foreground">
         <div className="container px-4">
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
@@ -97,24 +97,24 @@ const ValidationSection = () => {
             transition={{ duration: 0.5 }}
             className="max-w-2xl mx-auto text-center"
           >
-            <div className="w-16 h-16 md:w-20 md:h-20 mx-auto mb-6 md:mb-8 rounded-full bg-secondary/20 flex items-center justify-center">
-              <Check className="w-8 h-8 md:w-10 md:h-10 text-secondary" />
+            <div className="w-16 h-16 md:w-20 md:h-20 mx-auto mb-6 md:mb-8 rounded-full bg-green-500/20 flex items-center justify-center">
+              <Check className="w-8 h-8 md:w-10 md:h-10 text-green-600" />
             </div>
-            <h2 className="font-display text-2xl md:text-3xl lg:text-4xl font-bold mb-4">
-              Obrigado pela sua resposta!
+            <h2 className="font-display text-2xl md:text-3xl lg:text-4xl font-bold mb-4 text-green-800">
+              Obrigado pelo interesse!
             </h2>
-            <p className="text-base md:text-lg opacity-90 mb-6 md:mb-8">
+            <p className="text-base md:text-lg text-green-700 mb-6 md:mb-8">
               Seu interesse nos ajuda a construir algo que realmente resolve o seu problema.
               Entraremos em contato assim que o produto estiver disponível.
             </p>
-            <div className="p-4 rounded-xl bg-primary-foreground/10 inline-block text-left">
-              <p className="text-sm opacity-75">
+            <div className="p-4 rounded-xl bg-white/70 inline-block text-left">
+              <p className="text-sm text-green-700">
                 Nome: <span className="font-semibold">{contactData.name}</span>
               </p>
-              <p className="text-sm opacity-75 mt-1">
+              <p className="text-sm text-green-700 mt-1">
                 Valor da obra: <span className="font-semibold">{selectedWorkValue}</span>
               </p>
-              <p className="text-sm opacity-75 mt-1">
+              <p className="text-sm text-green-700 mt-1">
                 Disposição: <span className="font-semibold">R${selectedPrice}/mês</span>
               </p>
             </div>

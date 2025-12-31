@@ -63,6 +63,9 @@ const StatusSection = () => {
                   Sua opinião importa
                 </h4>
                 <p className="text-sm text-muted-foreground">
+                  Você irá receber um e-mail com os acessos ao preencher o formulário acima.
+                </p>
+                <p className="text-sm text-muted-foreground mt-2">
                   Cada resposta nos ajuda a entender melhor a dor de quem constrói. 
                   Não é um compromisso de compra — é uma conversa honesta sobre o que você precisa.
                 </p>
