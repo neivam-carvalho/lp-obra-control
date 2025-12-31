@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Check, ArrowRight, Sparkles, User, Phone, Mail } from "lucide-react";
+import { Check, ArrowRight, Sparkles, User, Phone, Mail, Loader2 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
 const workValues = [
@@ -37,7 +37,9 @@ const ValidationSection = () => {
 
   const isContactValid = contactData.name.trim() && contactData.phone.trim() && contactData.email.trim();
 
-  const handleSubmit = () => {
+  const [isLoading, setIsLoading] = useState(false);
+
+  const handleSubmit = async () => {
     if (!isContactValid) {
       toast({
         title: "Preencha todos os campos",
@@ -46,13 +48,43 @@ const ValidationSection = () => {
       });
       return;
     }
-    // In a real scenario, this would send data to analytics/backend
-    console.log("Validation data:", { selectedWorkValue, selectedPrice, contactData });
-    setSubmitted(true);
-    toast({
-      title: "Obrigado pelo interesse!",
-      description: "Entraremos em contato quando o produto estiver disponível.",
-    });
+
+    setIsLoading(true);
+
+    try {
+      const response = await fetch('/api/leads', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: contactData.name,
+          phone: contactData.phone,
+          email: contactData.email,
+          workValue: selectedWorkValue,
+          selectedPrice: selectedPrice
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Erro ao salvar dados');
+      }
+
+      setSubmitted(true);
+      toast({
+        title: "Obrigado pelo interesse!",
+        description: "Entraremos em contato quando o produto estiver disponível.",
+      });
+    } catch (error) {
+      console.error('Erro ao enviar dados:', error);
+      toast({
+        title: "Erro ao enviar",
+        description: "Por favor, tente novamente mais tarde.",
+        variant: "destructive"
+      });
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   if (submitted) {
@@ -290,11 +322,20 @@ const ValidationSection = () => {
                     variant="hero"
                     size="lg"
                     className="flex-1 order-1 sm:order-2"
-                    disabled={!isContactValid}
+                    disabled={!isContactValid || isLoading}
                     onClick={handleSubmit}
                   >
-                    Confirmar interesse
-                    <ArrowRight className="w-5 h-5" />
+                    {isLoading ? (
+                      <>
+                        <Loader2 className="w-5 h-5 animate-spin" />
+                        Enviando...
+                      </>
+                    ) : (
+                      <>
+                        Confirmar interesse
+                        <ArrowRight className="w-5 h-5" />
+                      </>
+                    )}
                   </Button>
                 </div>
               </motion.div>
