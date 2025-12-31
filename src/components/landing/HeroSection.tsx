@@ -25,7 +25,7 @@ const HeroSection = () => {
             className="font-display text-4xl md:text-5xl lg:text-6xl font-extrabold text-foreground leading-tight mb-6"
           >
             Evite perder dinheiro e pagar{" "}
-            <span className="text-gradient-hero">juros</span> durante a construção da sua casa
+            <span className="text-gradient-hero">juros</span> durante a construção da sua casa ou reforma do seu imóvel
           </motion.h1>
 
           {/* Subheadline */}

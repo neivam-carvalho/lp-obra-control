@@ -136,7 +136,7 @@ const ValidationSection = () => {
         >
           <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-secondary/20 text-secondary text-sm font-medium mb-4">
             <Sparkles className="w-4 h-4" />
-            Validação
+            Vamos juntos
           </span>
           <h2 className="font-display text-2xl md:text-3xl lg:text-5xl font-bold mb-4">
             Ajude-nos a construir isso

@@ -20,7 +20,7 @@ const StatusSection = () => {
           {/* Status badge */}
           <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-secondary/10 border border-secondary/30 mb-8">
             <FlaskConical className="w-5 h-5 text-secondary" />
-            <span className="font-medium text-foreground">Projeto em validação</span>
+            <span className="font-medium text-foreground">Ganhe 1 mês de acesso grátis para testar</span>
           </div>
 
           <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-6">
@@ -41,7 +41,7 @@ const StatusSection = () => {
               onClick={scrollToValidation}
               className="group w-full sm:w-auto"
             >
-              Quero participar da validação
+              Quero participar do teste grátis de 1 mês
               <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
             </Button>
           </div>

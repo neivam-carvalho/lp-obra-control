@@ -42,7 +42,7 @@ const PainSection = () => {
             A realidade de quem constrói ou reforma
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Se você está passando por isso, saiba que não está sozinho.
+            Se você está passando por isso, saiba que é possível ter controle e não perder dinheiro.
           </p>
         </motion.div>
 

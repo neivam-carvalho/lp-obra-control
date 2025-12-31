@@ -17,7 +17,7 @@ const CauseSection = () => {
               A causa real
             </span>
             <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-6">
-              O problema não é a obra ser cara
+              O problema não é a obra ou a reforma ser muito cara
             </h2>
           </motion.div>
 
