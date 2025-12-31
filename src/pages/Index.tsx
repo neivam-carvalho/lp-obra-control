@@ -5,10 +5,12 @@ import TransformationSection from "@/components/landing/TransformationSection";
 import AudienceSection from "@/components/landing/AudienceSection";
 import ValidationSection from "@/components/landing/ValidationSection";
 import StatusSection from "@/components/landing/StatusSection";
+import Header from "@/components/landing/Header";
 
 const Index = () => {
   return (
     <main className="min-h-screen">
+      <Header />
       <HeroSection />
       <PainSection />
       <CauseSection />
