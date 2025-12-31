@@ -39,10 +39,15 @@ const StatusSection = () => {
               variant="hero" 
               size="xl" 
               onClick={scrollToValidation}
-              className="group w-full sm:w-auto"
+              className="group w-full sm:w-auto whitespace-normal text-center leading-tight px-6 py-4 h-auto"
             >
-              Quero participar do teste grátis de 1 mês
-              <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
+              <span className="flex flex-col sm:flex-row items-center gap-1 sm:gap-2">
+                <span>Quero participar do</span>
+                <span className="flex items-center gap-2">
+                  teste grátis de 1 mês
+                  <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
+                </span>
+              </span>
             </Button>
           </div>
 
