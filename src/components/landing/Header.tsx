@@ -50,7 +50,7 @@ const Header = () => {
               onClick={scrollToValidation}
               className="text-sm px-4 py-2"
             >
-              Quero 1 mês grátis
+              Quero 14 dias grátis
             </Button>
           </div>
         </motion.header>
