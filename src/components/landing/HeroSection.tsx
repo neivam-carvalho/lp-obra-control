@@ -36,7 +36,7 @@ const HeroSection = () => {
             className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-10"
           >
             Saiba, com antecedência, quando sua obra vai estourar o orçamento — 
-            <span className="font-medium text-foreground"> antes de entrar no cheque especial ou no cartão.</span>
+            <span className="font-medium text-foreground"> antes de entrar no cheque especial ou no cartão de crédito.</span>
           </motion.p>
 
           {/* CTA */}

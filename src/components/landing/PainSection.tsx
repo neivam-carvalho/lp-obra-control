@@ -15,7 +15,7 @@ const painPoints = [
   {
     icon: Clock,
     title: "Multas, juros e parcelamentos começam a aparecer",
-    description: "Quando percebe, já está pagando juros no cartão ou cheque especial."
+    description: "Quando percebe, já está pagando juros no cartão de crédito ou cheque especial."
   },
   {
     icon: HeartCrack,
@@ -39,7 +39,7 @@ const PainSection = () => {
             Você se identifica?
           </span>
           <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4">
-            A realidade de quem constrói a própria casa
+            A realidade de quem constrói ou reforma
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             Se você está passando por isso, saiba que não está sozinho.

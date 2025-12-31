@@ -30,7 +30,7 @@ const StatusSection = () => {
           <p className="text-lg text-muted-foreground mb-10 max-w-2xl mx-auto">
             Este projeto ainda está em fase de validação. Seu feedback é essencial para 
             entendermos se essa solução realmente resolve o problema de quem está construindo 
-            a própria casa.
+            ou reformando sua casa ou apartamento.
           </p>
 
           {/* CTA */}
