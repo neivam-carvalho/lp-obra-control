@@ -6,6 +6,27 @@ import { Label } from "@/components/ui/label";
 import { Check, ArrowRight, Sparkles, User, Phone, Mail, Loader2 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
+// Função para formatar telefone brasileiro
+const formatPhoneBR = (value: string): string => {
+  const numbers = value.replace(/\D/g, '');
+  if (numbers.length <= 2) return numbers;
+  if (numbers.length <= 7) return `(${numbers.slice(0, 2)}) ${numbers.slice(2)}`;
+  if (numbers.length <= 11) return `(${numbers.slice(0, 2)}) ${numbers.slice(2, 7)}-${numbers.slice(7)}`;
+  return `(${numbers.slice(0, 2)}) ${numbers.slice(2, 7)}-${numbers.slice(7, 11)}`;
+};
+
+// Validação de telefone brasileiro (10 ou 11 dígitos)
+const isValidPhoneBR = (phone: string): boolean => {
+  const numbers = phone.replace(/\D/g, '');
+  return numbers.length >= 10 && numbers.length <= 11;
+};
+
+// Validação de email
+const isValidEmail = (email: string): boolean => {
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return emailRegex.test(email);
+};
+
 const workValues = [
   "Menos de R$100.000",
   "R$100.000 a R$200.000",
@@ -33,17 +54,60 @@ const ValidationSection = () => {
   const [selectedPrice, setSelectedPrice] = useState<number | null>(null);
   const [contactData, setContactData] = useState<ContactData>({ name: "", phone: "", email: "" });
   const [submitted, setSubmitted] = useState(false);
+  const [errors, setErrors] = useState<{ phone?: string; email?: string }>({});
   const { toast } = useToast();
 
-  const isContactValid = contactData.name.trim() && contactData.phone.trim() && contactData.email.trim();
+  const isContactValid = contactData.name.trim() && 
+    contactData.phone.trim() && 
+    contactData.email.trim() &&
+    isValidPhoneBR(contactData.phone) &&
+    isValidEmail(contactData.email);
 
   const [isLoading, setIsLoading] = useState(false);
 
+  const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const formatted = formatPhoneBR(e.target.value);
+    setContactData({ ...contactData, phone: formatted });
+    if (formatted && !isValidPhoneBR(formatted)) {
+      setErrors({ ...errors, phone: "Telefone inválido" });
+    } else {
+      setErrors({ ...errors, phone: undefined });
+    }
+  };
+
+  const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const email = e.target.value;
+    setContactData({ ...contactData, email });
+    if (email && !isValidEmail(email)) {
+      setErrors({ ...errors, email: "E-mail inválido" });
+    } else {
+      setErrors({ ...errors, email: undefined });
+    }
+  };
+
   const handleSubmit = async () => {
-    if (!isContactValid) {
+    if (!contactData.name.trim() || !contactData.phone.trim() || !contactData.email.trim()) {
       toast({
         title: "Preencha todos os campos",
         description: "Por favor, informe seu nome, telefone e e-mail.",
+        variant: "destructive"
+      });
+      return;
+    }
+
+    if (!isValidPhoneBR(contactData.phone)) {
+      toast({
+        title: "Telefone inválido",
+        description: "Por favor, informe um telefone válido com DDD.",
+        variant: "destructive"
+      });
+      return;
+    }
+
+    if (!isValidEmail(contactData.email)) {
+      toast({
+        title: "E-mail inválido",
+        description: "Por favor, informe um e-mail válido.",
         variant: "destructive"
       });
       return;
@@ -289,9 +353,11 @@ const ValidationSection = () => {
                       type="tel"
                       placeholder="(00) 00000-0000"
                       value={contactData.phone}
-                      onChange={(e) => setContactData({ ...contactData, phone: e.target.value })}
-                      className="bg-primary-foreground/10 border-primary-foreground/20 text-primary-foreground placeholder:text-primary-foreground/50 focus:border-secondary"
+                      onChange={handlePhoneChange}
+                      maxLength={15}
+                      className={`bg-primary-foreground/10 border-primary-foreground/20 text-primary-foreground placeholder:text-primary-foreground/50 focus:border-secondary ${errors.phone ? 'border-red-400' : ''}`}
                     />
+                    {errors.phone && <span className="text-red-300 text-xs">{errors.phone}</span>}
                   </div>
                   
                   <div className="space-y-2">
@@ -304,9 +370,10 @@ const ValidationSection = () => {
                       type="email"
                       placeholder="seu@email.com"
                       value={contactData.email}
-                      onChange={(e) => setContactData({ ...contactData, email: e.target.value })}
-                      className="bg-primary-foreground/10 border-primary-foreground/20 text-primary-foreground placeholder:text-primary-foreground/50 focus:border-secondary"
+                      onChange={handleEmailChange}
+                      className={`bg-primary-foreground/10 border-primary-foreground/20 text-primary-foreground placeholder:text-primary-foreground/50 focus:border-secondary ${errors.email ? 'border-red-400' : ''}`}
                     />
+                    {errors.email && <span className="text-red-300 text-xs">{errors.email}</span>}
                   </div>
                 </div>
 
