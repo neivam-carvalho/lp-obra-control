@@ -49,10 +49,15 @@ const HeroSection = () => {
               variant="hero" 
               size="xl" 
               onClick={scrollToValidation}
-              className="group"
+              className="group whitespace-normal text-center leading-tight px-6 py-4 h-auto"
             >
-              Quero evitar prejuízo na minha obra
-              <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
+              <span className="flex flex-col sm:flex-row items-center gap-1 sm:gap-2">
+                <span>Quero evitar prejuízo</span>
+                <span className="flex items-center gap-2">
+                  na minha obra
+                  <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
+                </span>
+              </span>
             </Button>
           </motion.div>
 
