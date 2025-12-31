@@ -74,19 +74,6 @@ const TransformationSection = () => {
               </div>
             </motion.div>
 
-            {/* Arrow (desktop) */}
-            <div className="hidden md:flex absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-10">
-              <motion.div
-                initial={{ opacity: 0, scale: 0 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: 0.3 }}
-                className="w-12 h-12 rounded-full bg-gradient-accent flex items-center justify-center shadow-glow"
-              >
-                <ArrowRight className="w-6 h-6 text-primary" />
-              </motion.div>
-            </div>
-
             {/* After */}
             <motion.div
               initial={{ opacity: 0, x: 30 }}
