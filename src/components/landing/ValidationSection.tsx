@@ -179,6 +179,8 @@ const ValidationSection = () => {
             >
               Acesse o Obra Control
             </a>
+            <br>
+            </br>
             <div className="p-4 rounded-xl bg-white/70 inline-block text-left">
               <p className="text-sm text-green-700">
                 Nome: <span className="font-semibold">{contactData.name}</span>
