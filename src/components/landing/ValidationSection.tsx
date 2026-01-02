@@ -175,7 +175,7 @@ const ValidationSection = () => {
               href="https://obracontrol.upvya.com/"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-block mb-6 md:mb-8 px-8 py-4 bg-green-600 hover:bg-green-700 text-white font-semibold text-lg rounded-xl transition-colors duration-200 shadow-lg hover:shadow-xl"
+              className="inline-block mb-12 md:mb-16 px-8 py-4 bg-green-600 hover:bg-green-700 text-white font-semibold text-lg rounded-xl transition-colors duration-200 shadow-lg hover:shadow-xl"
             >
               Acesse o Obra Control
             </a>
