@@ -169,8 +169,16 @@ const ValidationSection = () => {
             </h2>
             <p className="text-base md:text-lg text-green-700 mb-6 md:mb-8">
               Seu interesse nos ajuda a construir algo que realmente resolve o seu problema.
-              Entraremos em contato assim que o produto estiver disponível.
+              Clique no botão abaixo para acessar o Obra Control e faça o seu cadastro ou login.
             </p>
+            <a
+              href="https://obracontrol.upvya.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block mb-6 md:mb-8 px-8 py-4 bg-green-600 hover:bg-green-700 text-white font-semibold text-lg rounded-xl transition-colors duration-200 shadow-lg hover:shadow-xl"
+            >
+              Acesse o Obra Control
+            </a>
             <div className="p-4 rounded-xl bg-white/70 inline-block text-left">
               <p className="text-sm text-green-700">
                 Nome: <span className="font-semibold">{contactData.name}</span>
